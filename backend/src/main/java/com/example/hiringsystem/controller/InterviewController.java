@@ -4,7 +4,6 @@ import com.example.hiringsystem.dto.InterviewRequest;
 import com.example.hiringsystem.dto.InterviewResponse;
 import com.example.hiringsystem.service.InterviewService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/interviews")
-@RequiredArgsConstructor
 public class InterviewController {
 
     private final InterviewService interviewService;
+
+    public InterviewController(InterviewService interviewService) {
+        this.interviewService = interviewService;
+    }
 
     @PostMapping
     public ResponseEntity<InterviewResponse> scheduleInterview(@Valid @RequestBody InterviewRequest request,
